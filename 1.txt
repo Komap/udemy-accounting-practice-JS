@@ -3,5 +3,5 @@
 3. git add -A
 4. git commit  -a -m"naming"
 
-5. git remote add origin https://github.com/Komap/link.git
+5. git remote add origin https://github.com/Komap/udemy-accounting-practice-JS
 6. git push -u origin master 
