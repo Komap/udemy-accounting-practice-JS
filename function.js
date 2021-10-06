@@ -1,16 +1,112 @@
 
 
-
-// +  перед PROMPT - говорит, что будет работать с числом
-
 document.addEventListener("DOMContentLoaded", ()=>{
+// +  перед PROMPT - говорит, что будет работать с числом
+    let countOfFilms;
+    let countOfGenres;
     const personalMovieDB = {
-        count: "",  
+        count: countOfFilms,  
         movies:{},
         actors:{},
         genres:[],
         privat: false
     }
+
+    const writeYourGenres = () =>{
+        let i = 1;
+    // циклит пока меньше или ровняется 2
+        while( i<=3 ){
+            // countOfGenres = prompt("Какой жанр номер - " + i);
+            if(isNaN(countOfGenres) === true){
+                console.log(i);
+                // personalMovieDB.genres.push(countOfGenres);
+                //массив всегда начинается с 0, а в i уже 1 при первом цикле
+                //personalMovieDB.genres[i - 1] = countOfGenres;
+                personalMovieDB.genres[i - 1] = prompt(`Какой жанр номер - ${i}`);
+                i += 1;
+            }
+            else{
+                // i--;
+                alert("Не должно быть цифр");
+                console.log(i);
+                // if(i<0){
+                //     i = 0;
+                // }
+            } 
+        }
+        console.log(personalMovieDB);
+    }
+
+   writeYourGenres();
+
+
+
+    const start = (log) =>{
+
+        countOfFilms = +prompt(" Ввести любое число от 1 до 100 ", "");
+        // isNaN(countOfFilms)
+        //будеьт циклить пока равно пустой строке(пока не введенно) или пока введенное будет не числом
+        //!другими словами будет циклить, пока будет совпадать с условием(то есть ему совпадения не подходят)
+        while(countOfFilms == '' || isNaN(countOfFilms) || countOfFilms>100){
+            alert("Еще раз")
+            countOfFilms = +prompt(" Ввести любое число от 1 до 100 ", "");  
+        }
+        personalMovieDB.count = countOfFilms;
+        // personalMovieDB.count = [...personalMovieDB.count,{countOfFilms}];
+        console.log(personalMovieDB);
+    }
+    //start();
+   
+    
+
+    const callFilms = () =>{
+    //! next code to do while
+    let i = 0;
+    do{
+        const questionHowManyFilms = prompt("Один из последних просмотренных фильмов?"),
+        questionQuality = +prompt("На сколько оцените его от 0 до 10?");
+        i++;
+        if(questionHowManyFilms != '' && 
+            questionQuality != '' &&
+            questionQuality > 0 && 
+            questionQuality <= 10 && 
+            questionHowManyFilms.length < 50  && 
+            isNaN(questionHowManyFilms) === true &&
+            questionHowManyFilms != null && questionQuality != null)
+            {
+                personalMovieDB.movies[questionHowManyFilms] = questionQuality;
+                console.log(i);
+            }
+        else{
+            i--;
+            console.log(i);
+        }
+    }while(i < 1);
+        // console.log(personalMovieDB.movies, personalMovieDB.count);
+    }
+
+     //callFilms();
+
+    const showDB = () =>{
+        personalMovieDB.privat === false ? console.log("В привате стоит значение false") : console.log("true");
+    }
+    // showDB();
+
+    const showDB2 = (hidden) =>{
+       if(!hidden){
+            console.log("В привате стоит значение " + personalMovieDB.privat);
+       }
+       else {
+            console.log("В привате стоит значение " + personalMovieDB.privat);
+       }
+    }
+
+    //showDB2(personalMovieDB.privat);
+
+
+
+
+
 
     // let i = 0;
     // const questionHowManyFilms = prompt("Один из последних просмотренных фильмов?"),
@@ -24,34 +120,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //             console.log(i);
     //             personalMovieDB.movies[questionHowManyFilms] = questionQuality;
     //         }
-    //         while(i <= 1);
+    //         while(i <= 2);
     //     }
     //     else{
     //         i--
     //         alert("Ошибка");
     //     }
     //     console.log(personalMovieDB);
-
-        // let i = 0;
-        // do{
-        //     const questionHowManyFilms = prompt("Один из последних просмотренных фильмов?"),
-        //     questionQuality = +prompt("На сколько оцените его?");
-        //     i++;
-        //     if(questionHowManyFilms != '' && questionQuality != '' && questionHowManyFilms != null && questionQuality != null
-        //         && questionQuality > 0 && questionQuality <= 10 && questionHowManyFilms.length < 50){
-                
-        //         personalMovieDB.movies[questionHowManyFilms] = questionQuality;
-        //         console.log(i);
-        //     }
-        //     else{
-        //         i--;
-        //         console.log(i);
-        //     }
-        // }while(i <= 1);
-        // console.log(personalMovieDB.movies)
-   
-
-
 
 
     //! Важжный комментарий, оператор сранвения && работает так:  пока "выполнится/не выполнятся" все условия, типо "это" и "это" и "это"
@@ -77,29 +152,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // }
     // console.log(personalMovieDB);
 
-    // let i = 0;
-    // do{
-    //     const questionHowManyFilms = prompt("Один из последних просмотренных фильмов?"),
-    //     questionQuality = +prompt("На сколько оцените его?");
-    //     if( 
-    //     questionHowManyFilms != null 
-    //     || questionQuality != null 
-    //     || questionHowManyFilms !="" 
-    //     || questionQuality !="" 
-    //     || (questionQuality <= 0 && questionQuality < 10)
-    //     || questionHowManyFilms.length <= 30 ){
-            
-    //         personalMovieDB.movies[questionHowManyFilms] = questionQuality;
-    //          console.log(i);
-    //     }
-    //     else{
-    //         alert("Произошла ошибка, введите данные еще раз");
-    //     } 
-        
-    //     console.log(personalMovieDB);
-    //     i++;
-    // }
-    // while(i <= 1);
 
 
     // const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
@@ -119,7 +171,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
     //! ниже код будет не работающим, потому что оператор && должен быть выполнен во всех строчках и
-    //! даже если была введена пустая стпрока, при этом не был введен  NULL (Отмена)
+    //! даже если была введена пустая строка, при этом не был введен  NULL (Отмена)
     // for(let i=0; i<2; i++){
     //     const questionHowManyFilms = prompt("Один из последних просмотренных фильмов?"),
     //     questionQuality = +prompt("На сколько оцените его?");
